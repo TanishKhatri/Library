@@ -20,3 +20,28 @@ function addBookToLibrary(author, title, numberOfPages, hasBeenRead, rating) {
     myLibrary.push(newBook);
 }
 
+async function searchBook(title, imgBox) {
+
+    const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(data);
+
+    // Check if any results
+    if (data.docs.length > 0) {
+        const firstResult = data.docs[0];
+
+        if (firstResult.cover_i) {
+            const coverId = firstResult.cover_i;
+            const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+            const img = document.createElement("img");
+            img.src = coverUrl;
+            imgBox.appendChild(img);
+
+        } else {
+            console.log ("coverid not found")
+        }
+    }
+}

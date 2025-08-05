@@ -4,3 +4,22 @@
     padding: 0;
 }
 
+:root {
+    --black: #040D12;
+    --dark-teal: #183D3D;
+    --teal: #5C8374;
+    --light-teal: #93B1A6;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.cover-box {
+    width: 180px;
+    height: 240px;
+    border: 1px solid red;
+}
