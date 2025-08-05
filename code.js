@@ -41,7 +41,15 @@ async function searchBook(title, imgBox) {
             imgBox.appendChild(img);
 
         } else {
-            console.log ("coverid not found")
+            console.log("coverid not found");
+            const img = document.createElement("img");
+            img.src = "images/image-not-found.png";
+            imgBox.appendChild();
         }
+    } else {
+        console.log("Search returned empty handed");
+        const img = document.createElement("img");
+        img.src = "images/image-not-found.png";
+        imgBox.appendChild();
     }
 }
