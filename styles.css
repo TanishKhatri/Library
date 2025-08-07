@@ -7,7 +7,7 @@
 }
 
 :root {
-    --black: #040D12;
+    --very-dark-teal: #040D12;
     --dark-teal: #183D3D;
     --teal: #5C8374;
     --light-teal: #93B1A6;
@@ -18,15 +18,41 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    background-color: var(--very-dark-teal);
+    color: var(--light-teal);
 }
 
 
 .library > h1 {
     font-family: "Bitcount Prop Single";
+    font-size: 2.5rem;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    margin: 0px 180px;
+    margin: 15px 180px;
+}
+
+.header > .right-header {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header > .right-header > .show-collection,
+.header > .right-header > .new-book {
+    padding: 5px 15px;
+    font-size: 1.2rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    color: var(--light-teal);
+    background-color: var(--very-dark-teal);
+}
+
+.header > .right-header > .new-book:hover,
+.header > .right-header > .show-collection:hover {
+    background-color: var(--light-teal);
+    color: var(--very-dark-teal);
 }
