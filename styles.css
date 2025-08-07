@@ -32,7 +32,10 @@ body {
     color: var(--light-teal);
 }
 
-
+.library {
+    display: flex;
+    gap: 10px;
+}
 .library > h1 {
     font-family: "Bitcount Prop Single";
     font-size: 2.5rem;
@@ -41,18 +44,22 @@ body {
 .library > svg {
     height: 2.5rem;
     width: auto;
+    fill: var(--light-teal);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     margin: 15px var(--distance-from-edges);
+    margin-bottom: 50px;
+    flex-wrap: wrap;
 }
 
 .header > .right-header {
     display: flex;
     gap: 30px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .header > .right-header > .show-collection,
@@ -74,13 +81,12 @@ body {
 
 .content {
     display: grid;
-    flex: 1;
     align-self: stretch;
     margin: 30px var(--distance-from-edges); 
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-rows: auto;
     justify-items: center;
-    align-items: center;
-    
+    align-items: start;
 }
 
 .footer {
