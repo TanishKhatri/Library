@@ -32,7 +32,6 @@ async function searchBook(title, imgBox) {
     // Check if any results
     if (data.docs.length > 0) {
         const firstResult = data.docs[0];
-
         if (firstResult.cover_i) {
             const coverId = firstResult.cover_i;
             const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;

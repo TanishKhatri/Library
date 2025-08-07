@@ -95,3 +95,22 @@ body {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.content > .empty-box {
+    border: 2px solid var(--light-teal);
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    width: 180px;
+    height: 276px;
+}
+
+.plus-icon {
+    transition: 0.5s linear;
+}
+
+.empty-box:hover .plus-icon {
+    transform: rotate(135deg) scale(1.4);
+}
