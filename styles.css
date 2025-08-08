@@ -62,8 +62,7 @@ body {
     flex-wrap: wrap;
 }
 
-.header > .right-header > .show-collection,
-.header > .right-header > .new-book {
+.right-header > * {
     padding: 5px 15px;
     font-size: 1.2rem;
     border-radius: 9999px;
@@ -73,8 +72,7 @@ body {
     background-color: var(--very-dark-teal);
 }
 
-.header > .right-header > .new-book:hover,
-.header > .right-header > .show-collection:hover {
+.right-header > *:hover {
     background-color: var(--light-teal);
     color: var(--very-dark-teal);
 }
