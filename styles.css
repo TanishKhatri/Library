@@ -111,12 +111,14 @@ body {
     font-size: 5rem;
     width: 180px;
     height: 276px;
-}
-
-.plus-icon {
-    transition: 0.5s linear;
+    cursor: pointer;
 }
 
 .empty-box:hover .plus-icon {
-    transform: rotate(135deg) scale(1.4);
+    animation: 1s plus-icon-rotation linear infinite;
+}
+
+@keyframes plus-icon-rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
