@@ -60,14 +60,11 @@ function newBookEventListeners() {
 
     function newBookButton(button) {
         button.addEventListener("click", () => {
-            openDialogBox();
+            let dialog = document.querySelector("#newBookDialog");
+            dialog.showModal();
         });
     }
 
     newBookButton(headerButton);
     newBookButton(emptyBox);
-}
-
-function openDialogBox() {
-    
 }
