@@ -52,3 +52,22 @@ async function searchBook(title, imgBox) {
         imgBox.appendChild();
     }
 }
+
+
+function newBookEventListeners() {
+    let headerButton = document.querySelector(".new-book");
+    let emptyBox = document.querySelector(".empty-box");
+
+    function newBookButton(button) {
+        button.addEventListener("click", () => {
+            openDialogBox();
+        });
+    }
+
+    newBookButton(headerButton);
+    newBookButton(emptyBox);
+}
+
+function openDialogBox() {
+    
+}

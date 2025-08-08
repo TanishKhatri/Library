@@ -112,6 +112,10 @@ body {
     cursor: pointer;
 }
 
+.plus-icon {
+    user-select: none;
+}
+
 .empty-box:hover .plus-icon {
     animation: 1s plus-icon-rotation linear infinite;
 }
@@ -119,4 +123,11 @@ body {
 @keyframes plus-icon-rotation {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
+}
+
+.newBookDialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
