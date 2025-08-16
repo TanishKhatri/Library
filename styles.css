@@ -4,6 +4,15 @@
     padding: 0;
 }
 
+a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 :root {
     --vibrant-blue: hsl(208, 99%, 42%);
     --white: #ffffff;
@@ -12,13 +21,14 @@
     --dark-blue: #183A57;
     --black: #000000;
     --red: #ff0000;
+    --orange: #ff9752;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    min-width: 1vw;
-    min-height: 1vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 .header {
@@ -37,4 +47,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 100px;
+    background-color: var(--dark-blue);
+    color: var(--white);
 }
