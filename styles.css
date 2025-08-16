@@ -15,6 +15,7 @@ a:hover {
 
 :root {
     --vibrant-blue: hsl(208, 99%, 42%);
+    --vibrant-blue-hover: hsl(208, 99%, 22%);
     --white: #ffffff;
     --light-purple: rgb(202, 184, 255);
     --light-blue: #A3D4FF;
@@ -22,12 +23,13 @@ a:hover {
     --black: #000000;
     --red: #ff0000;
     --orange: #ff9752;
+    --header-font: "Major Mono Display";
+    --content-margin: 70px;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    min-width: 100vw;
     min-height: 100vh;
 }
 
@@ -35,11 +37,56 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 150px;
+    margin: 10px var(--content-margin);
+}
+
+.header h1 {
+    font-family: var(--header-font);
+    color: var(--vibrant-blue);
+    font-size: 2.8rem;
+}
+
+.header button {
+    background-color: var(--vibrant-blue);
+    color: var(--white);
+    border: none;
+    font-size: 1rem;
+    padding: 5px 20px;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.header button:hover {
+    background-color: var(--vibrant-blue-hover);
 }
 
 .content {
     flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 50px var(--content-margin);
+}
+
+.hero-book {
+    display: none;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    row-gap: 30px;
+    column-gap: 30px;
+}
+
+.book {
+    height: 260px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-blue);
 }
 
 .footer {
