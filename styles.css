@@ -110,6 +110,16 @@ body {
     color: var(--light-red);
     font-size: 70px;
     border: 2px solid var(--dark-blue);
+    cursor: pointer;
+}
+
+.book-grid .add-new-book:hover .plus-icon {
+    animation: 1s circular-anim infinite linear;
+}
+
+@keyframes circular-anim {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg);}
 }
 
 .new-book-dialog {
@@ -191,4 +201,19 @@ body {
 .question input[type="text"]:invalid:focus,
 .question input[type="tel"]:invalid:focus {
     background-color: var(--light-red);
+}
+
+.initial-loading-icon {
+    display: none;
+}
+
+.loading-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: 1s circular-anim infinite;
+}
+
+.content-loaded {
+    display: none;
 }

@@ -69,8 +69,15 @@ async function searchBook(book, bookElement) {
         if (firstResult.cover_i) {
             const coverId = firstResult.cover_i;
             const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
-            console.log(coverUrl);
-            bookElement.style.backgroundImage = "url(" + coverUrl + ")";
+            let loadingIcon = bookElement.querySelector(".initial-loading-icon");
+            loadingIcon.classList.remove("initial-loading-icon");
+            loadingIcon.classList.add("loading-icon");
+            const img = new Image();
+            img.src = coverUrl;
+            img.onload = () => {
+                bookElement.style.backgroundImage = "url(" + coverUrl + ")";
+                loadingIcon.classList.add("content-loaded");
+            }
 
         } else {
             document.createElement("div");
@@ -113,4 +120,12 @@ function activateDialogBox() {
     })
 }
 
+// function updateGrid() {
+//     myLibrary.forEach((book) => {
+//         book
+//     })
+// }
+addBookToLibrary("An Absolutely Remarkable Thing", "Hank Green", 734, true);
+let protoBook = document.querySelector(".book-grid .book");
+searchBook(myLibrary[0], protoBook);
 activateDialogBox();
