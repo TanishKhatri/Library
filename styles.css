@@ -203,10 +203,6 @@ body {
     background-color: var(--light-red);
 }
 
-.initial-loading-icon {
-    display: none;
-}
-
 .loading-icon {
     display: flex;
     justify-content: center;
