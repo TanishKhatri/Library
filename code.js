@@ -133,6 +133,7 @@ function activateDialogBox() {
 
 function updateGrid() {
     let bookGrid = document.querySelector(".book-grid");
+    bookGrid.querySelectorAll(".book").forEach((book) => {book.remove()});
     myLibrary.forEach((book) => {
         let hasBeenRead = book.getHasBeenRead();
         let id = book.getId();
