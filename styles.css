@@ -16,13 +16,19 @@ a:hover {
 :root {
     --vibrant-blue: hsl(208, 99%, 42%);
     --vibrant-blue-hover: hsl(208, 99%, 22%);
+    --dark-vibrant-blue: hsl(208, 99%, 12%);
     --white: #ffffff;
     --light-purple: rgb(202, 184, 255);
     --light-blue: #A3D4FF;
     --dark-blue: #183A57;
     --black: #000000;
     --red: #ff0000;
+    --gray: #cccccc;
     --orange: #ff9752;
+    --dark-orange: #f5741d;
+    --dark-dark-orange: #cf641c;
+    --light-red: #ff8777;
+    --green: #7ffaa4;
     --header-font: "Major Mono Display";
     --content-margin: 70px;
 }
@@ -76,10 +82,11 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     row-gap: 30px;
-    column-gap: 30px;
+    column-gap: 70px;
 }
 
-.book {
+.book,
+.book-grid .add-new-book {
     height: 260px;
     border-radius: 5px;
     display: flex;
@@ -96,4 +103,92 @@ body {
     padding: 10px 100px;
     background-color: var(--dark-blue);
     color: var(--white);
+}
+
+.book-grid .add-new-book {
+    user-select: none;
+    color: var(--light-red);
+    font-size: 70px;
+    border: 2px solid var(--dark-blue);
+}
+
+.new-book-dialog {
+    position: absolute;
+    width: 33vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 7px;
+    border: 2px solid var(--dark-blue);
+    background-color: var(--gray);
+}
+
+.new-book-dialog .container-div {
+    display: flex;
+    gap: 8px;
+}
+
+
+.new-book-dialog form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+    color: var(--dark-vibrant-blue);
+}
+
+.new-book-dialog form .submit-button {
+    width: fit-content;
+    padding: 3px 10px;
+    border: none;
+    color: white;
+    background-color: var(--dark-orange);
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.new-book-dialog form .submit-button:hover {
+    background-color: var(--dark-dark-orange);
+}
+
+.new-book-dialog .close {
+    border-radius: 50%;
+    height: 27px;
+    width: 27px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+}
+
+.new-book-dialog .close:hover {
+    background-color: var(--light-blue);
+}
+
+.question {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 5px;
+}
+
+.question input[type="text"],
+.question input[type="tel"] {
+    flex: 1;
+    outline: none;
+    border-radius: 2px;
+    padding: 3px 5px;
+    border: none;
+}
+
+.question input[type="text"]:valid:focus,
+.question input[type="tel"]:valid:focus {
+    background-color: var(--green);
+}
+
+.question input[type="text"]:invalid:focus,
+.question input[type="tel"]:invalid:focus {
+    background-color: var(--light-red);
 }

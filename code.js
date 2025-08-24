@@ -1,3 +1,5 @@
+"use strict";
+
 const myLibrary = [];
 
 //            string string  int    boolean
@@ -9,6 +11,7 @@ function Book(title, author, pages, hasBeenRead) {
   this.author = author;
   this.pages =  pages;
   this.hasBeenRead = hasBeenRead;
+  this.id = crypto.randomUUID();
 }
 
 // Getters and Setters for the book
@@ -40,52 +43,74 @@ Book.prototype.getHasBeenRead = function() {
     return this.hasBeenRead;
 }
 
+Book.prototype.getId = function() {
+    return this.id;
+}
+
 Book.prototype.setHasBeenRead = function (hasBeenRead) {
     this.hasBeenRead = hasBeenRead;
 }
 
 function addBookToLibrary(title, author, pages, hasBeenRead) {
-    book = new Book(title, author, pages, hasBeenRead);
+    let book = new Book(title, author, pages, hasBeenRead);
     myLibrary.push(book);
 }
 
-//Tests for getters
-/* 
-addBookToLibrary("The Way Of Kings", "Brandon Sanderson", 1271, true);
-addBookToLibrary("The Wheel of Time", "Robert Jordan", 890, true);
-addBookToLibrary("The Strength of The Few", "James Islington", 980, false);
+async function searchBook(book, bookElement) {
+    const title = book.getTitle();
+    const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
 
-myLibrary.forEach((book) => {
-    console.log(book.getTitle());
-    console.log(book.getAuthor());
-    console.log(book.getPages());
-    console.log(book.getHasBeenRead());
-})
-*/
+    const response = await fetch(url);
+    const data = await response.json();
 
-// async function searchBook(book) {
-//     const title = book.getTitle();
-//     const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
+    // Check if any results
+    if (data.docs.length > 0) {
+        const firstResult = data.docs[0];
+        if (firstResult.cover_i) {
+            const coverId = firstResult.cover_i;
+            const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`;
+            console.log(coverUrl);
+            bookElement.style.backgroundImage = "url(" + coverUrl + ")";
 
-//     const response = await fetch(url);
-//     const data = await response.json();
+        } else {
+            document.createElement("div");
+            bookElement.innerText = book.getTitle(); 
+        }
+    } else {
+        document.createElement("div");
+        bookElement.innerText = book.getTitle();
+    }
+}
 
-//     // Check if any results
-//     if (data.docs.length > 0) {
-//     const firstResult = data.docs[0];
 
-//     if (firstResult.cover_i) {
-//         const coverId = firstResult.cover_i;
-//         const coverUrl = `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`;
+function activateDialogBox() {
+    let dialog = document.querySelector(".new-book-dialog");
+    let newBookHeader = document.querySelector(".header .new-book");
+    let newBookGridElement = document.querySelector(".book-grid .add-new-book");
+    let submitButton = document.querySelector(".new-book-dialog .submit-button");
+    let closeButton = document.querySelector(".new-book-dialog .close");
+    
+    newBookHeader.addEventListener("click", () => {
+        dialog.showModal();
+    });
 
-//         document.getElementById('coverResult').innerHTML = `
-//         <p><strong>${firstResult.title}</strong> by ${firstResult.author_name?.[0] || 'Unknown Author'}</p>
-//         <img src="${coverUrl}" alt="Book Cover">
-//         `;
-//     } else {
-//         document.getElementById('coverResult').innerText = 'No cover image found.';
-//     }
-//     } else {
-//         document.getElementById('coverResult').innerText = 'No results found.';
-//     }
-// }
+    newBookGridElement.addEventListener("click", () => {
+        dialog.showModal();
+    });
+
+    submitButton.addEventListener("click", (e) => {
+        let title = document.querySelector(".new-book-dialog #title");
+        let author = document.querySelector(".new-book-dialog #author");
+        let pages = document.querySelector(".new-book-dialog #pages");
+        let hasBeenRead = document.querySelector(".new-book-dialog #hasBeenRead");
+        addBookToLibrary(title.value, author.value, pages.value, hasBeenRead.checked);
+        console.log(myLibrary[0]);
+        dialog.close();
+    })
+
+    closeButton.addEventListener("click", () => {
+        dialog.close();
+    })
+}
+
+activateDialogBox();
