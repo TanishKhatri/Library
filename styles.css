@@ -109,8 +109,25 @@ body {
     user-select: none;
     color: var(--light-red);
     font-size: 70px;
-    border: 2px solid var(--dark-blue);
+    border: 3px solid var(--dark-blue);
     cursor: pointer;
+}
+
+.book {
+    border: 3px solid var(--dark-blue);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.book:hover {
+    background-color: var(--dark-blue);
+}
+
+.book:hover .book-content-display-flex{
+    color: white;
 }
 
 .book-grid .add-new-book:hover .plus-icon {
@@ -212,4 +229,55 @@ body {
 
 .content-loaded {
     display: none;
+}
+
+.book-activated {
+    border: 4px solid red;
+}
+
+.book-content-display-none {
+    display: none;
+}
+
+.book-content-display-flex {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+    font-size: 1.3rem;
+}
+
+.book-remove-button {
+    position: absolute;
+    padding: 2px;
+    background-color: var(--light-purple);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 85%;
+}
+
+.removeSVG:hover path {
+    stroke:red;
+}
+
+.red-cross {
+    height: 0.8rem;
+    width: auto;
+}
+.red-cross path {
+    fill: red;
+}
+
+.green-tick {
+    height: 1.3rem;
+    width: auto;
+}
+.green-tick path {
+    stroke: green;
+}
+
+.book-read {
+    display: flex;
+    align-items: center;
 }
