@@ -213,16 +213,91 @@ function addBookToGrid(book) {
 <path d="M10 12L14 16M14 12L10 16M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M18 6V16.2C18 17.8802 18 18.7202 17.673 19.362C17.3854 19.9265 16.9265 20.3854 16.362 20.673C15.7202 21 14.8802 21 13.2 21H10.8C9.11984 21 8.27976 21 7.63803 20.673C7.07354 20.3854 6.6146 19.9265 6.32698 19.362C6 18.7202 6 17.8802 6 16.2V6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`
     
-    removeButton.addEventListener("click", () => {
+    removeButton.addEventListener("click", (e) => {
         let index = myLibrary.indexOf(book);
         myLibrary.splice(index,1);
-        newBook.remove();    
+        newBook.remove();
+
+        let heroBookContainer = document.querySelector(".hero-book-container");
+        console.log(heroBookContainer.innerHTML.indexOf(`data-id="${book.getId()}"`));
+        if (heroBookContainer.innerHTML.indexOf(`data-id="${book.getId()}"`) !== -1) {
+            clearHero();
+        }
+        e.stopPropagation();    
     })
     
+    newBook.addEventListener("click", () => {
+        let heroBookContainer = document.querySelector(".hero-book-container");
+        let newBookCopy = newBook.cloneNode(true);
+
+        let copyRemoveButton = newBookCopy.querySelector(".book-remove-button");
+        copyRemoveButton.remove();
+        heroBookContainer.innerHTML = "";
+        heroBookContainer.appendChild(newBookCopy);
+        
+        let heroTitle = document.querySelector(".hero-title");
+        heroTitle.textContent = "Title: " + book.getTitle();
+        let heroAuthor = document.querySelector(".hero-author");
+        heroAuthor.textContent = "Author: " + book.getAuthor();
+        let heroPages = document.querySelector(".hero-pages");
+        heroPages.textContent = "Pages: " + book.getPages();
+        let heroRead = document.querySelector(".hero-read");
+        if (book.getHasBeenRead()) {
+            heroRead.innerHTML = `<div class="hero-read"><span class="read-text">Read: </span> <svg class="green-tick" width="10px" height="10px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5.5 12.5L10.167 17L19.5 8" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>` } else {
+            heroRead.innerHTML = `<div class="hero-read"><span class="read-text">Read: </span> <svg class="red-cross" width="10px" height="10px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    
+    <title>cross</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs>
+
+</defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-469.000000, -1041.000000)" fill="#000000">
+            <path d="M487.148,1053.48 L492.813,1047.82 C494.376,1046.26 494.376,1043.72 492.813,1042.16 C491.248,1040.59 488.712,1040.59 487.148,1042.16 L481.484,1047.82 L475.82,1042.16 C474.257,1040.59 471.721,1040.59 470.156,1042.16 C468.593,1043.72 468.593,1046.26 470.156,1047.82 L475.82,1053.48 L470.156,1059.15 C468.593,1060.71 468.593,1063.25 470.156,1064.81 C471.721,1066.38 474.257,1066.38 475.82,1064.81 L481.484,1059.15 L487.148,1064.81 C488.712,1066.38 491.248,1066.38 492.813,1064.81 C494.376,1063.25 494.376,1060.71 492.813,1059.15 L487.148,1053.48" id="cross" sketch:type="MSShapeGroup">
+
+</path>
+        </g>
+    </g>
+</svg></div>`
+        }
+
+        let heroBook = document.querySelector(".hero-book-no-display");
+        heroBook.classList.add("hero-book");
+        heroBook.classList.remove("hero-book-no-display");
+    });
+
     newBook.appendChild(removeButton);
     searchBook(book, newBook);
     let emptyBookAdder = document.querySelector(".add-new-book");
     bookGrid.insertBefore(newBook, emptyBookAdder);
 }
 
+function clearHero () {
+    let heroBook = document.querySelector(".hero-book");
+    if (heroBook === null) {
+        return;
+    }
+    let heroBookContainer = document.querySelector(".hero-book-container");
+    heroBookContainer.innerHTML = "";
+    let heroTitle = document.querySelector(".hero-title");
+    let heroAuthor = document.querySelector(".hero-author");
+    let heroPages = document.querySelector(".hero-pages");
+    let heroRead = document.querySelector(".hero-read");
+    heroTitle.innerHTML = "";
+    heroAuthor.innerHTML = "";
+    heroPages.innerHTML = "";
+    heroRead.innerHTML = "";
+    heroBook.classList.add("hero-book-no-display");
+    heroBook.classList.remove("hero-book");
+}
+
+function showCollectionButton() {
+    let showCollection = document.querySelector(".show-collection");
+    showCollection.addEventListener("click", () => {
+        clearHero();
+    })
+}
+showCollectionButton();
 activateDialogBox();

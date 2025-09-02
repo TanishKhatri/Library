@@ -28,7 +28,9 @@ a:hover {
     --dark-orange: #f5741d;
     --dark-dark-orange: #cf641c;
     --light-red: #ff8777;
+    --light-pink: #ffd0ca;
     --green: #7ffaa4;
+    --yellow: #ffed88;
     --header-font: "Major Mono Display";
     --content-margin: 70px;
 }
@@ -120,6 +122,7 @@ body {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    background-size: cover;
 }
 
 .book:hover {
@@ -280,4 +283,47 @@ body {
 .book-read {
     display: flex;
     align-items: center;
+}
+
+.hero-book-container > * {
+    height: 312px;
+    width: 216px;
+}
+
+.hero-book {
+    background-color: var(--light-purple);
+    border-radius: 10px;
+    padding: 50px 200px;
+    display: flex;
+    gap: 20px;
+}
+
+.hero-read {
+    display: flex;
+    align-items: center;
+}
+
+.hero-book-details {
+    flex: 1;
+    display: flex;
+    font-size: 2rem;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 312px;
+    padding: 20px 20px;
+    background-color: var(--light-pink);
+    border-radius: 10px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.hero-read .green-tick {
+    height: 1.7rem;
+}
+
+.hero-book-no-display {
+    display: none;
+}
+
+.hero-read .red-cross {
+    height: 1.4rem;
 }
